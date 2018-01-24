@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.mvc.dao.sercatalogue.SER_MGMT_001_002.SerDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.insigma.mvc.model.SerDepartment" >
+    <id column="DEPARTMENT_ID" property="departmentId" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_ADDRESS" property="departmentAddress" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_LONGITUDE" property="departmentLongitude" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_LATITUDE" property="departmentLatitude" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_TEL" property="departmentTel" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_LINKMAN" property="departmentLinkman" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DEPARTMENT_ID, DEPARTMENT_ADDRESS, DEPARTMENT_LONGITUDE, DEPARTMENT_LATITUDE, DEPARTMENT_TEL, 
+    DEPARTMENT_LINKMAN, USERID, CREATETIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SER_DEPARTMENT
+    where DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SER_DEPARTMENT
+    where DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.insigma.mvc.model.SerDepartment" >
+    insert into SER_DEPARTMENT (DEPARTMENT_ID, DEPARTMENT_ADDRESS, 
+      DEPARTMENT_LONGITUDE, DEPARTMENT_LATITUDE, 
+      DEPARTMENT_TEL, DEPARTMENT_LINKMAN, USERID, 
+      CREATETIME, STATUS)
+    values (#{departmentId,jdbcType=VARCHAR}, #{departmentAddress,jdbcType=VARCHAR}, 
+      #{departmentLongitude,jdbcType=VARCHAR}, #{departmentLatitude,jdbcType=VARCHAR}, 
+      #{departmentTel,jdbcType=VARCHAR}, #{departmentLinkman,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.insigma.mvc.model.SerDepartment" >
+    insert into SER_DEPARTMENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        DEPARTMENT_ID,
+      </if>
+      <if test="departmentAddress != null" >
+        DEPARTMENT_ADDRESS,
+      </if>
+      <if test="departmentLongitude != null" >
+        DEPARTMENT_LONGITUDE,
+      </if>
+      <if test="departmentLatitude != null" >
+        DEPARTMENT_LATITUDE,
+      </if>
+      <if test="departmentTel != null" >
+        DEPARTMENT_TEL,
+      </if>
+      <if test="departmentLinkman != null" >
+        DEPARTMENT_LINKMAN,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentAddress != null" >
+        #{departmentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLongitude != null" >
+        #{departmentLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLatitude != null" >
+        #{departmentLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentTel != null" >
+        #{departmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLinkman != null" >
+        #{departmentLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.insigma.mvc.model.SerDepartment" >
+    update SER_DEPARTMENT
+    <set >
+      <if test="departmentAddress != null" >
+        DEPARTMENT_ADDRESS = #{departmentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLongitude != null" >
+        DEPARTMENT_LONGITUDE = #{departmentLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLatitude != null" >
+        DEPARTMENT_LATITUDE = #{departmentLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentTel != null" >
+        DEPARTMENT_TEL = #{departmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLinkman != null" >
+        DEPARTMENT_LINKMAN = #{departmentLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.insigma.mvc.model.SerDepartment" >
+    update SER_DEPARTMENT
+    set DEPARTMENT_ADDRESS = #{departmentAddress,jdbcType=VARCHAR},
+      DEPARTMENT_LONGITUDE = #{departmentLongitude,jdbcType=VARCHAR},
+      DEPARTMENT_LATITUDE = #{departmentLatitude,jdbcType=VARCHAR},
+      DEPARTMENT_TEL = #{departmentTel,jdbcType=VARCHAR},
+      DEPARTMENT_LINKMAN = #{departmentLinkman,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

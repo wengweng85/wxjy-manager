@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.mvc.dao.sercatalogue.SER_MGMT_001_001.SerCatalogueMapper" >
+  <resultMap id="BaseResultMap" type="com.insigma.mvc.model.SerCatalogue" >
+    <id column="CATA_ID" property="cataId" jdbcType="VARCHAR" />
+    <result column="CATA_CODE" property="cataCode" jdbcType="VARCHAR" />
+    <result column="CATA_CONSUMER" property="cataConsumer" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_ID" property="departmentId" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_TEL" property="departmentTel" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_LINKMAN" property="departmentLinkman" jdbcType="VARCHAR" />
+    <result column="CATA_HAND_TIME_LIMIT" property="cataHandTimeLimit" jdbcType="DECIMAL" />
+    <result column="CATA_PROMISE_TIME_LIMIT" property="cataPromiseTimeLimit" jdbcType="DECIMAL" />
+    <result column="CATA_COMPLAINT TEL" property="cataComplaintTel" jdbcType="VARCHAR" />
+    <result column="CATA_IS_CHARGE" property="cataIsCharge" jdbcType="VARCHAR" />
+    <result column="CATA_ESTABLISH" property="cataEstablish" jdbcType="VARCHAR" />
+    <result column="CATA_HAND_TERM" property="cataHandTerm" jdbcType="VARCHAR" />
+    <result column="CATA_APP_MATERIAL" property="cataAppMaterial" jdbcType="VARCHAR" />
+    <result column="CATA_PROCESS" property="cataProcess" jdbcType="VARCHAR" />
+    <result column="CATA_BUS_TYPE" property="cataBusType" jdbcType="VARCHAR" />
+    <result column="CATA_EVENT_TYPE" property="cataEventType" jdbcType="VARCHAR" />
+    <result column="CATA_POWER_TYPE" property="cataPowerType" jdbcType="VARCHAR" />
+    <result column="CATA_IS_NET" property="cataIsNet" jdbcType="VARCHAR" />
+    <result column="CATA_NET_PERMID" property="cataNetPermid" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.insigma.mvc.model.SerCatalogue" extends="BaseResultMap" >
+    <result column="CATA_PROCESS_PIC" property="cataProcessPic" jdbcType="BLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CATA_ID, CATA_CODE, CATA_CONSUMER, DEPARTMENT_ID, DEPARTMENT_TEL, DEPARTMENT_LINKMAN, 
+    CATA_HAND_TIME_LIMIT, CATA_PROMISE_TIME_LIMIT, "CATA_COMPLAINT TEL", CATA_IS_CHARGE, 
+    CATA_ESTABLISH, CATA_HAND_TERM, CATA_APP_MATERIAL, CATA_PROCESS, CATA_BUS_TYPE, CATA_EVENT_TYPE, 
+    CATA_POWER_TYPE, CATA_IS_NET, CATA_NET_PERMID, USERID, CREATETIME, STATUS
+  </sql>
+  <sql id="Blob_Column_List" >
+    CATA_PROCESS_PIC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SER_CATALOGUE
+    where CATA_ID = #{cataId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SER_CATALOGUE
+    where CATA_ID = #{cataId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.insigma.mvc.model.SerCatalogue" >
+    insert into SER_CATALOGUE (CATA_ID, CATA_CODE, CATA_CONSUMER, 
+      DEPARTMENT_ID, DEPARTMENT_TEL, DEPARTMENT_LINKMAN, 
+      CATA_HAND_TIME_LIMIT, CATA_PROMISE_TIME_LIMIT, 
+      "CATA_COMPLAINT TEL", CATA_IS_CHARGE, CATA_ESTABLISH, 
+      CATA_HAND_TERM, CATA_APP_MATERIAL, CATA_PROCESS, 
+      CATA_BUS_TYPE, CATA_EVENT_TYPE, CATA_POWER_TYPE, 
+      CATA_IS_NET, CATA_NET_PERMID, USERID, 
+      CREATETIME, STATUS, CATA_PROCESS_PIC
+      )
+    values (#{cataId,jdbcType=VARCHAR}, #{cataCode,jdbcType=VARCHAR}, #{cataConsumer,jdbcType=VARCHAR}, 
+      #{departmentId,jdbcType=VARCHAR}, #{departmentTel,jdbcType=VARCHAR}, #{departmentLinkman,jdbcType=VARCHAR}, 
+      #{cataHandTimeLimit,jdbcType=DECIMAL}, #{cataPromiseTimeLimit,jdbcType=DECIMAL}, 
+      #{cataComplaintTel,jdbcType=VARCHAR}, #{cataIsCharge,jdbcType=VARCHAR}, #{cataEstablish,jdbcType=VARCHAR}, 
+      #{cataHandTerm,jdbcType=VARCHAR}, #{cataAppMaterial,jdbcType=VARCHAR}, #{cataProcess,jdbcType=VARCHAR}, 
+      #{cataBusType,jdbcType=VARCHAR}, #{cataEventType,jdbcType=VARCHAR}, #{cataPowerType,jdbcType=VARCHAR}, 
+      #{cataIsNet,jdbcType=VARCHAR}, #{cataNetPermid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{cataProcessPic,jdbcType=BLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.insigma.mvc.model.SerCatalogue" >
+    insert into SER_CATALOGUE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cataId != null" >
+        CATA_ID,
+      </if>
+      <if test="cataCode != null" >
+        CATA_CODE,
+      </if>
+      <if test="cataConsumer != null" >
+        CATA_CONSUMER,
+      </if>
+      <if test="departmentId != null" >
+        DEPARTMENT_ID,
+      </if>
+      <if test="departmentTel != null" >
+        DEPARTMENT_TEL,
+      </if>
+      <if test="departmentLinkman != null" >
+        DEPARTMENT_LINKMAN,
+      </if>
+      <if test="cataHandTimeLimit != null" >
+        CATA_HAND_TIME_LIMIT,
+      </if>
+      <if test="cataPromiseTimeLimit != null" >
+        CATA_PROMISE_TIME_LIMIT,
+      </if>
+      <if test="cataComplaintTel != null" >
+        "CATA_COMPLAINT TEL",
+      </if>
+      <if test="cataIsCharge != null" >
+        CATA_IS_CHARGE,
+      </if>
+      <if test="cataEstablish != null" >
+        CATA_ESTABLISH,
+      </if>
+      <if test="cataHandTerm != null" >
+        CATA_HAND_TERM,
+      </if>
+      <if test="cataAppMaterial != null" >
+        CATA_APP_MATERIAL,
+      </if>
+      <if test="cataProcess != null" >
+        CATA_PROCESS,
+      </if>
+      <if test="cataBusType != null" >
+        CATA_BUS_TYPE,
+      </if>
+      <if test="cataEventType != null" >
+        CATA_EVENT_TYPE,
+      </if>
+      <if test="cataPowerType != null" >
+        CATA_POWER_TYPE,
+      </if>
+      <if test="cataIsNet != null" >
+        CATA_IS_NET,
+      </if>
+      <if test="cataNetPermid != null" >
+        CATA_NET_PERMID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="cataProcessPic != null" >
+        CATA_PROCESS_PIC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cataId != null" >
+        #{cataId,jdbcType=VARCHAR},
+      </if>
+      <if test="cataCode != null" >
+        #{cataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cataConsumer != null" >
+        #{cataConsumer,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentTel != null" >
+        #{departmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLinkman != null" >
+        #{departmentLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="cataHandTimeLimit != null" >
+        #{cataHandTimeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="cataPromiseTimeLimit != null" >
+        #{cataPromiseTimeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="cataComplaintTel != null" >
+        #{cataComplaintTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cataIsCharge != null" >
+        #{cataIsCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="cataEstablish != null" >
+        #{cataEstablish,jdbcType=VARCHAR},
+      </if>
+      <if test="cataHandTerm != null" >
+        #{cataHandTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="cataAppMaterial != null" >
+        #{cataAppMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="cataProcess != null" >
+        #{cataProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="cataBusType != null" >
+        #{cataBusType,jdbcType=VARCHAR},
+      </if>
+      <if test="cataEventType != null" >
+        #{cataEventType,jdbcType=VARCHAR},
+      </if>
+      <if test="cataPowerType != null" >
+        #{cataPowerType,jdbcType=VARCHAR},
+      </if>
+      <if test="cataIsNet != null" >
+        #{cataIsNet,jdbcType=VARCHAR},
+      </if>
+      <if test="cataNetPermid != null" >
+        #{cataNetPermid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cataProcessPic != null" >
+        #{cataProcessPic,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.insigma.mvc.model.SerCatalogue" >
+    update SER_CATALOGUE
+    <set >
+      <if test="cataCode != null" >
+        CATA_CODE = #{cataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cataConsumer != null" >
+        CATA_CONSUMER = #{cataConsumer,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null" >
+        DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentTel != null" >
+        DEPARTMENT_TEL = #{departmentTel,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentLinkman != null" >
+        DEPARTMENT_LINKMAN = #{departmentLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="cataHandTimeLimit != null" >
+        CATA_HAND_TIME_LIMIT = #{cataHandTimeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="cataPromiseTimeLimit != null" >
+        CATA_PROMISE_TIME_LIMIT = #{cataPromiseTimeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="cataComplaintTel != null" >
+        "CATA_COMPLAINT TEL" = #{cataComplaintTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cataIsCharge != null" >
+        CATA_IS_CHARGE = #{cataIsCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="cataEstablish != null" >
+        CATA_ESTABLISH = #{cataEstablish,jdbcType=VARCHAR},
+      </if>
+      <if test="cataHandTerm != null" >
+        CATA_HAND_TERM = #{cataHandTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="cataAppMaterial != null" >
+        CATA_APP_MATERIAL = #{cataAppMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="cataProcess != null" >
+        CATA_PROCESS = #{cataProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="cataBusType != null" >
+        CATA_BUS_TYPE = #{cataBusType,jdbcType=VARCHAR},
+      </if>
+      <if test="cataEventType != null" >
+        CATA_EVENT_TYPE = #{cataEventType,jdbcType=VARCHAR},
+      </if>
+      <if test="cataPowerType != null" >
+        CATA_POWER_TYPE = #{cataPowerType,jdbcType=VARCHAR},
+      </if>
+      <if test="cataIsNet != null" >
+        CATA_IS_NET = #{cataIsNet,jdbcType=VARCHAR},
+      </if>
+      <if test="cataNetPermid != null" >
+        CATA_NET_PERMID = #{cataNetPermid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cataProcessPic != null" >
+        CATA_PROCESS_PIC = #{cataProcessPic,jdbcType=BLOB},
+      </if>
+    </set>
+    where CATA_ID = #{cataId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.insigma.mvc.model.SerCatalogue" >
+    update SER_CATALOGUE
+    set CATA_CODE = #{cataCode,jdbcType=VARCHAR},
+      CATA_CONSUMER = #{cataConsumer,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      DEPARTMENT_TEL = #{departmentTel,jdbcType=VARCHAR},
+      DEPARTMENT_LINKMAN = #{departmentLinkman,jdbcType=VARCHAR},
+      CATA_HAND_TIME_LIMIT = #{cataHandTimeLimit,jdbcType=DECIMAL},
+      CATA_PROMISE_TIME_LIMIT = #{cataPromiseTimeLimit,jdbcType=DECIMAL},
+      "CATA_COMPLAINT TEL" = #{cataComplaintTel,jdbcType=VARCHAR},
+      CATA_IS_CHARGE = #{cataIsCharge,jdbcType=VARCHAR},
+      CATA_ESTABLISH = #{cataEstablish,jdbcType=VARCHAR},
+      CATA_HAND_TERM = #{cataHandTerm,jdbcType=VARCHAR},
+      CATA_APP_MATERIAL = #{cataAppMaterial,jdbcType=VARCHAR},
+      CATA_PROCESS = #{cataProcess,jdbcType=VARCHAR},
+      CATA_BUS_TYPE = #{cataBusType,jdbcType=VARCHAR},
+      CATA_EVENT_TYPE = #{cataEventType,jdbcType=VARCHAR},
+      CATA_POWER_TYPE = #{cataPowerType,jdbcType=VARCHAR},
+      CATA_IS_NET = #{cataIsNet,jdbcType=VARCHAR},
+      CATA_NET_PERMID = #{cataNetPermid,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CATA_PROCESS_PIC = #{cataProcessPic,jdbcType=BLOB}
+    where CATA_ID = #{cataId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.insigma.mvc.model.SerCatalogue" >
+    update SER_CATALOGUE
+    set CATA_CODE = #{cataCode,jdbcType=VARCHAR},
+      CATA_CONSUMER = #{cataConsumer,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      DEPARTMENT_TEL = #{departmentTel,jdbcType=VARCHAR},
+      DEPARTMENT_LINKMAN = #{departmentLinkman,jdbcType=VARCHAR},
+      CATA_HAND_TIME_LIMIT = #{cataHandTimeLimit,jdbcType=DECIMAL},
+      CATA_PROMISE_TIME_LIMIT = #{cataPromiseTimeLimit,jdbcType=DECIMAL},
+      "CATA_COMPLAINT TEL" = #{cataComplaintTel,jdbcType=VARCHAR},
+      CATA_IS_CHARGE = #{cataIsCharge,jdbcType=VARCHAR},
+      CATA_ESTABLISH = #{cataEstablish,jdbcType=VARCHAR},
+      CATA_HAND_TERM = #{cataHandTerm,jdbcType=VARCHAR},
+      CATA_APP_MATERIAL = #{cataAppMaterial,jdbcType=VARCHAR},
+      CATA_PROCESS = #{cataProcess,jdbcType=VARCHAR},
+      CATA_BUS_TYPE = #{cataBusType,jdbcType=VARCHAR},
+      CATA_EVENT_TYPE = #{cataEventType,jdbcType=VARCHAR},
+      CATA_POWER_TYPE = #{cataPowerType,jdbcType=VARCHAR},
+      CATA_IS_NET = #{cataIsNet,jdbcType=VARCHAR},
+      CATA_NET_PERMID = #{cataNetPermid,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where CATA_ID = #{cataId,jdbcType=VARCHAR}
+  </update>
+</mapper>

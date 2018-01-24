@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.mvc.dao.sercatalogue.SER_MGMT_001_001.SerDeskMapper" >
+  <resultMap id="BaseResultMap" type="com.insigma.mvc.model.SerDesk" >
+    <result column="DESK_ID" property="deskId" jdbcType="VARCHAR" />
+    <result column="DESK_CODE" property="deskCode" jdbcType="VARCHAR" />
+    <result column="CATA_ID" property="cataId" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.insigma.mvc.model.SerDesk" >
+    insert into SER_DESK (DESK_ID, DESK_CODE, CATA_ID, 
+      USERID, CREATETIME, STATUS
+      )
+    values (#{deskId,jdbcType=VARCHAR}, #{deskCode,jdbcType=VARCHAR}, #{cataId,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.insigma.mvc.model.SerDesk" >
+    insert into SER_DESK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deskId != null" >
+        DESK_ID,
+      </if>
+      <if test="deskCode != null" >
+        DESK_CODE,
+      </if>
+      <if test="cataId != null" >
+        CATA_ID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deskId != null" >
+        #{deskId,jdbcType=VARCHAR},
+      </if>
+      <if test="deskCode != null" >
+        #{deskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cataId != null" >
+        #{cataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

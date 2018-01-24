@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.mvc.dao.sercatalogue.SER_MGMT_001_001.SerCollectMapper" >
+  <resultMap id="BaseResultMap" type="com.insigma.mvc.model.SerCollect" >
+    <id column="COLLECT_ID" property="collectId" jdbcType="VARCHAR" />
+    <result column="CATA_ID" property="cataId" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COLLECT_ID, CATA_ID, USERID, CREATETIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SER_COLLECT
+    where COLLECT_ID = #{collectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SER_COLLECT
+    where COLLECT_ID = #{collectId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.insigma.mvc.model.SerCollect" >
+    insert into SER_COLLECT (COLLECT_ID, CATA_ID, USERID, 
+      CREATETIME, STATUS)
+    values (#{collectId,jdbcType=VARCHAR}, #{cataId,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.insigma.mvc.model.SerCollect" >
+    insert into SER_COLLECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="collectId != null" >
+        COLLECT_ID,
+      </if>
+      <if test="cataId != null" >
+        CATA_ID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="collectId != null" >
+        #{collectId,jdbcType=VARCHAR},
+      </if>
+      <if test="cataId != null" >
+        #{cataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.insigma.mvc.model.SerCollect" >
+    update SER_COLLECT
+    <set >
+      <if test="cataId != null" >
+        CATA_ID = #{cataId,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COLLECT_ID = #{collectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.insigma.mvc.model.SerCollect" >
+    update SER_COLLECT
+    set CATA_ID = #{cataId,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where COLLECT_ID = #{collectId,jdbcType=VARCHAR}
+  </update>
+</mapper>
